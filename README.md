@@ -22,4 +22,4 @@ Edit `src/index.js` to customize email sending logic.
 
 ## Contact Form UI
 
-![Contact Form UI](assets/images/contact_form.png) 
+![Contact Form UI](assets/images/demo.png) 
