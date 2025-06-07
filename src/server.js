@@ -6,15 +6,18 @@ const logger = require('./utils/logger');
 const app = express();
 const PORT = process.env.PORT || 3000;
 
+// Get the correct path to the public directory
+const publicPath = path.join(__dirname, '..', 'public');
+
 // Middleware
 app.use(express.json());
 
 // Serve static files from the public directory
-app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(publicPath));
 
 // Root route
 app.get('/', (req, res) => {
-    res.sendFile(path.join(__dirname, 'public', 'index.html'));
+    res.sendFile(path.join(publicPath, 'index.html'));
 });
 
 // Contact form endpoint
@@ -42,11 +45,11 @@ app.post('/api/contact', async (req, res) => {
 
 // Handle 404
 app.use((req, res) => {
-    res.status(404).sendFile(path.join(__dirname, 'public', 'index.html'));
+    res.status(404).sendFile(path.join(publicPath, 'index.html'));
 });
 
 // Start server
 app.listen(PORT, () => {
     logger.info(`Server running on port ${PORT}`);
-    logger.info(`Static files being served from: ${path.join(__dirname, 'public')}`);
+    logger.info(`Static files being served from: ${publicPath}`);
 }); 
