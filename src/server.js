@@ -8,6 +8,8 @@ const PORT = process.env.PORT || 3000;
 
 // Middleware
 app.use(express.json());
+
+// Serve static files from the public directory
 app.use(express.static(path.join(__dirname, 'public')));
 
 // Root route
@@ -46,4 +48,5 @@ app.use((req, res) => {
 // Start server
 app.listen(PORT, () => {
     logger.info(`Server running on port ${PORT}`);
+    logger.info(`Static files being served from: ${path.join(__dirname, 'public')}`);
 }); 
