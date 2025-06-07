@@ -18,4 +18,8 @@ A robust Node.js email notification service using Nodemailer, Handlebars, and Wi
 
 ## Usage
 
-Edit `src/index.js` to customize email sending logic. 
+Edit `src/index.js` to customize email sending logic.
+
+## Contact Form UI
+
+![Contact Form UI](assets/images/contact_form.png) 
