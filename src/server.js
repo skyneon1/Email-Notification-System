@@ -6,15 +6,23 @@ const logger = require('./utils/logger');
 const app = express();
 const PORT = process.env.PORT || 3000;
 
+// Middleware
 app.use(express.json());
 app.use(express.static(path.join(__dirname, 'public')));
 
+// Root route
+app.get('/', (req, res) => {
+    res.sendFile(path.join(__dirname, 'public', 'index.html'));
+});
+
+// Contact form endpoint
 app.post('/api/contact', async (req, res) => {
     try {
         const { email, message } = req.body;
 
+        // Send email notification
         await sendEmail({
-            to: process.env.EMAIL_USER, 
+            to: process.env.EMAIL_USER, // Your email address
             subject: 'New Contact Form Submission',
             templateName: 'contact',
             templateData: {
@@ -30,6 +38,12 @@ app.post('/api/contact', async (req, res) => {
     }
 });
 
+// Handle 404
+app.use((req, res) => {
+    res.status(404).sendFile(path.join(__dirname, 'public', 'index.html'));
+});
+
+// Start server
 app.listen(PORT, () => {
     logger.info(`Server running on port ${PORT}`);
 }); 
